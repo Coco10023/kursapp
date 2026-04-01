@@ -1,13 +1,52 @@
 <!doctype html>
-<html lang="en">
+<html lang="sv">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>kursapp</title>
-  </head>
-  <body>
-    <div id="app"></div>
+    <title>Kurshanterare</title>
     <script type="module" src="/src/main.ts"></script>
+  </head>
+
+  <body>
+    <div class = "container">
+      <h1>Kurshanterare</h1>
+
+      <form id = "courseForm">
+        <div>
+          <label for = "code">Kurskod</label>
+          <input type = "text" id = "code">
+        </div>
+
+        <div>
+          <label for = "name">Kursnamn</label>
+          <input type = "text" id = "name">
+        </div>
+
+        <div>
+          <label for = "progression">Progression</label>
+          <select id = "progression">
+            <option value = "">Välj progression</option>
+            <option value = "A">A</option>
+            <option value = "B">B</option>
+            <option value = "C">C</option>
+          </select>
+        </div>
+
+        <div>
+          <label for = "syllabus">Kursplan (URL)</label>
+          <input type = "url" id="syllabus">
+        </div>
+
+        <button type = "submit">Lägg till kurs</button>
+      </form>
+
+      <p id = "message"></p>
+
+      <section>
+        <h2>Kurser</h2>
+        <div id = "courseList"></div>
+      </section>
+    </div>
   </body>
 </html>
