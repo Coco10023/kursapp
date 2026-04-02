@@ -26,11 +26,9 @@ function loadCourses(): void {
   }
 }
 
-
 function saveCourses(); void {
   localStorage.setItem("courses", JSON.stringify(courses)); 
 }
-
 
 function renderCourses(): void {
   courseList.innerHTML = "";
@@ -63,7 +61,6 @@ function renderCourses(): void {
   });
 }
 
-
 function deleteCourse(code: string): void {
   courses = courses.filter((course: CourseInfo) => course.code !== code);
   saveCourses();
@@ -72,3 +69,63 @@ function deleteCourse(code: string): void {
 }
 
 
+function showMessage(text: string, color: string): void {
+  message.textContent = text;
+  message.style.color = color;
+}
+
+function validateCourse(course: CourseInfo): boolean {
+  if (
+    course.code.trim() === "" ||
+    course.name.trim() === "" ||
+    course.syllabus.trim() === ""
+  ) {
+    showMessage("Alla fält måste fyllas i.", "red");
+    return false;
+  }
+
+  if (!["A", "B", "C"].includes(course.progression)) {
+    showMessage("Progression måste vara A, B eller C.", "red");
+    return false;
+  }
+
+  const codeExists: boolean = courses.some(
+    (existingCourse: CourseInfo) =>
+      existingCourse.code.toLowerCase() === course.code.toLowerCase()
+  );
+
+  if (codeExists) {
+    showMessage("Kurskoden måste vara unik.", "red");
+    return false;
+  }
+
+  return true;
+}
+
+function addCourse(course: CourseInfo): void {
+  if (!validateCourse(course)) {
+    return;
+  }
+
+  courses.push(course);
+  saveCourses();
+  renderCourses();
+  courseForm.reset();
+  showMessage("Kursen har lagts till.", "green");
+}
+
+courseForm.addEventListener("submit", (event: SubmitEvent): void => {
+  event.preventDefault();
+
+  const newCourse: CourseInfo = {
+    code: codeInput.value,
+    name: nameInput.value,
+    progression: progressionInput.value as "A" | "B" | "C",
+    syllabus: syllabusInput.value,
+  };
+
+  addCourse(newCourse);
+});
+
+loadCourses();
+renderCourses();
