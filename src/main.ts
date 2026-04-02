@@ -27,5 +27,48 @@ function loadCourses(): void {
 }
 
 
+function saveCourses(); void {
+  localStorage.setItem("courses", JSON.stringify(courses)); 
+}
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+
+function renderCourses(): void {
+  courseList.innerHTML = "";
+
+  courses.forEach((course: CourseInfo) => {
+    const courseCard: HTMLDivElement = document.createElement("div");
+    courseCard.className = "course-card";
+
+    courseCard.innerHTML = `
+      <h3>${course.code} - ${course.name}</h3>
+      <p><strong>Progression:</strong> ${course.progression}</p>
+      <p>
+        <strong>Kursplan:</strong>
+        <a href="${course.syllabus}" target="_blank" rel="noopener noreferrer">
+          ${course.syllabus}
+        </a>
+      </p>
+    `;
+
+    const deleteButton: HTMLButtonElement = document.createElement("button");
+    deleteButton.textContent = "Radera";
+    deleteButton.className = "delete-btn";
+
+    deleteButton.addEventListener("click", () => {
+      deleteCourse(course.code);
+    });
+
+    courseCard.appendChild(deleteButton);
+    courseList.appendChild(courseCard);
+  });
+}
+
+
+function deleteCourse(code: string): void {
+  courses = courses.filter((course: CourseInfo) => course.code !== code);
+  saveCourses();
+  renderCourses();
+  showMessage("Kursen har raderats.", "green");
+}
+
+
