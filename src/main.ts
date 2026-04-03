@@ -1,5 +1,4 @@
 import './style.css'
-import { setupCounter } from './counter.ts'
 
 interface CourseInfo {
   code: string; 
@@ -26,7 +25,7 @@ function loadCourses(): void {
   }
 }
 
-function saveCourses(); void {
+function saveCourses(): void {
   localStorage.setItem("courses", JSON.stringify(courses)); 
 }
 
