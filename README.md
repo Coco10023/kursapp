@@ -4,9 +4,9 @@ En enkel webbapplikation för att hantera kurser.
 Applikationen är byggd med **TypeScript** och använder **localStorage** för att spara data mellan sessioner.
 
 
-## 🚀 Live demo
 
-👉 [Länk till publicerad webbplats](https://DITT-USERNAME.github.io/DITT-REPO/)
+
+👉 Länk till publicerad webbplats: 
 
 
 ## 📦 Funktioner
