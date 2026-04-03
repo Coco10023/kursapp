@@ -6,7 +6,7 @@ Applikationen är byggd med **TypeScript** och använder **localStorage** för a
 
 
 
-👉 Länk till publicerad webbplats: 
+👉 Länk till publicerad webbplats: https://coco10023.github.io/kursapp/ 
 
 
 ## 📦 Funktioner
